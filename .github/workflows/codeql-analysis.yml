@@ -16,7 +16,7 @@ on:
     branches: [ develop ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ develop ]
+    branches: [ develop, new-feature-* ]
   workflow_dispatch:
     
 
@@ -51,7 +51,7 @@ jobs:
       
     - name: Build with Maven
       if: matrix.language == 'java'
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml -DskipTests
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
